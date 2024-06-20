@@ -47,79 +47,85 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(
                     height: 30,
                   ),
-                  Container(
-                    margin: EdgeInsets.all(10),
-                    height: 100,
-                    width: 400,
-                    // color: Colors.white,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.teal),
-                        borderRadius: BorderRadius.all(Radius.circular(15))),
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: 10,
-                        ),
-                        CircleAvatar(
-                          radius: 40,
-                          backgroundImage: (StudentList[index].img != null)
-                              ? FileImage(StudentList[index].img!)
-                              : null,
-                        ),
-                        SizedBox(
-                          width: 30,
-                        ),
-                        Column(
-                          children: [
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              StudentList[index].student_grid!.text,
-                              style: TextStyle(fontSize: 20),
-                            ),
-                            Text(
-                              StudentList[index].student_name!.text,
-                              style: TextStyle(fontSize: 20),
-                            ),
-                            Text(
-                              StudentList[index].student_standard!.text,
-                              style: TextStyle(fontSize: 20),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          width: 180,
-                        ),
-                        Column(
-                          children: [
-                            SizedBox(
-                              height: 10,
-                            ),
-                            InkWell(
-                              onTap: () {
-                                showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return AlertDialog(
-                                        content: Column(children: [
-                                          Column(
-                                            children: [
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        si = index;
+                      });
+                      Navigator.of(context).pushNamed('/detail');
+                    },
+                    child: Container(
+                      margin: EdgeInsets.all(10),
+
+                      height: 100,
+                      width: 400,
+                      // color: Colors.white,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.teal),
+                          borderRadius: BorderRadius.all(Radius.circular(15))),
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: 10,
+                          ),
+                          CircleAvatar(
+                            radius: 40,
+                            backgroundImage: (StudentList[index].img != null)
+                                ? FileImage(StudentList[index].img!)
+                                : null,
+                          ),
+                          SizedBox(
+                            width: 30,
+                          ),
+                          Column(
+                            children: [
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Text(
+                                StudentList[index].student_grid!.text,
+                                style: TextStyle(fontSize: 20),
+                              ),
+                              Text(
+                                StudentList[index].student_name!.text,
+                                style: TextStyle(fontSize: 20),
+                              ),
+                              Text(
+                                StudentList[index].student_standard!.text,
+                                style: TextStyle(fontSize: 20),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            width: 180,
+                          ),
+                          Column(
+                            children: [
+                              SizedBox(
+                                height: 10,
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          content: SingleChildScrollView(
+                                            child: Column(children: [
+                                              Container(
+                                                height: 60,
+                                                width: 500,
+                                                color: Colors.teal,
+                                                child: Center(
+                                                    child: Text(
+                                                  'Upadate Dialog',
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 30),
+                                                )),
+                                              ),
                                               SizedBox(
                                                 height: 30,
-                                              ),
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.end,
-                                                children: [
-                                                  InkWell(
-                                                    onTap: () {
-                                                      StudentList.removeAt(
-                                                          index);
-                                                    },
-                                                    child: Icon(Icons.close),
-                                                  ),
-                                                ],
                                               ),
                                               buildSizedBox(
                                                   'Name',
@@ -193,33 +199,33 @@ class _HomePageState extends State<HomePage> {
                                                     });
                                                   },
                                                   child: Text('Cancle'))
-                                            ],
+                                            ]),
                                           ),
-                                        ]),
-                                      );
-                                    });
-                              },
-                              child: Icon(
-                                Icons.edit,
-                                size: 30,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    StudentList.removeAt(index);
-                                  });
+                                        );
+                                      });
                                 },
                                 child: Icon(
-                                  Icons.delete,
+                                  Icons.edit,
                                   size: 30,
-                                )),
-                          ],
-                        )
-                      ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      StudentList.removeAt(index);
+                                    });
+                                  },
+                                  child: Icon(
+                                    Icons.delete,
+                                    size: 30,
+                                  )),
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   )
                 ],
@@ -253,3 +259,5 @@ Widget buildSizedBox(String title, TextEditingController Controller) {
     ),
   );
 }
+
+int si = 0;

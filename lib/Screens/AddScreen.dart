@@ -62,7 +62,7 @@ class _AddScreenState extends State<AddScreen> {
                         ),
                       ],
                     ),
-                    buildSizedBox('Name', StudentList[index].student_name!),
+                   buildSizedBox('Name', StudentList[index].student_name!),
                     SizedBox(
                       height: 10,
                     ),
