@@ -54,7 +54,9 @@ class _AddScreenState extends State<AddScreen> {
                       children: [
                         InkWell(
                           onTap: () {
-                            StudentList.removeAt(index);
+                            setState(() {
+                              StudentList.removeAt(index);
+                            });
                           },
                           child: Icon(Icons.close),
                         ),
@@ -74,6 +76,7 @@ class _AddScreenState extends State<AddScreen> {
                     ),
                     Row(
                       children: [
+                        SizedBox(width: 30,),
                         StudentList[index].img == null
                             ? const CircleAvatar(
                                 radius: 50,

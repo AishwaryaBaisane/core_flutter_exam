@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:core_flutter_exam/utils/global.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -138,6 +141,40 @@ class _HomePageState extends State<HomePage> {
                                                       .student_standard!),
                                               SizedBox(
                                                 height: 10,
+                                              ),
+                                              Row(
+                                                children: [
+                                                  StudentList[index].img == null
+                                                      ? const CircleAvatar(
+                                                          radius: 50,
+                                                        )
+                                                      : CircleAvatar(
+                                                          radius: 50,
+                                                          backgroundImage:
+                                                              (StudentList[index]
+                                                                          .img !=
+                                                                      null)
+                                                                  ? FileImage(
+                                                                      StudentList[
+                                                                              index]
+                                                                          .img!)
+                                                                  : null,
+                                                        ),
+                                                  TextButton(
+                                                      onPressed: () async {
+                                                        XFile? img = await imagePicker
+                                                            .pickImage(
+                                                                source:
+                                                                    ImageSource
+                                                                        .gallery);
+                                                        setState(() {
+                                                          StudentList[index]
+                                                                  .img =
+                                                              File(img!.path);
+                                                        });
+                                                      },
+                                                      child: Text('PickImg'))
+                                                ],
                                               ),
                                               TextButton(
                                                   onPressed: () {
